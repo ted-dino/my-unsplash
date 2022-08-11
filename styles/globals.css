@@ -7,4 +7,7 @@
   html {
     font-family: "Noto Sans", system-ui, sans-serif;
   }
+  dialog::backdrop {
+    background: rgba(0, 0, 0, 0.25);
+  }
 }
