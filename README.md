@@ -72,9 +72,8 @@ $ npm start
 
 ## Acknowledgements
 
-- [Steps to replicate a design with only HTML and CSS](https://devchallenges-blogs.web.app/how-to-replicate-design/)
-- [Node.js](https://nodejs.org/)
-- [Marked - a markdown parser](https://github.com/chjj/marked)
+- [Modals Made Easy](https://youtu.be/TAB_v6yBXIE)
+- [Prevent dialog tag from closing on keydown Esc](https://stackoverflow.com/questions/61021135/prevent-dialog-from-closing-on-keydown-esc-in-chrome)
 
 ## Contact
 
