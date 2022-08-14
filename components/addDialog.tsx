@@ -1,11 +1,19 @@
-import { FormEvent, SyntheticEvent, useEffect, useRef, useState } from "react";
+import { FormEvent, useEffect, useRef, useState } from "react";
+import { Posts } from "../types";
 
 interface Props {
   showDialog: boolean;
   setShowDialog: (value: boolean) => void;
+  isLoading: boolean;
+  setIsLoading: (value: boolean) => void;
 }
 
-const Dialog = ({ showDialog, setShowDialog }: Props) => {
+const Dialog = ({
+  showDialog,
+  setShowDialog,
+  isLoading,
+  setIsLoading,
+}: Props) => {
   const ref = useRef<HTMLDialogElement>(null);
   const [label, setLabel] = useState("");
   const [link, setLink] = useState("");
@@ -20,6 +28,7 @@ const Dialog = ({ showDialog, setShowDialog }: Props) => {
     };
     showModal();
 
+    // prevent dialog tag from closing on keydown esc
     ref.current?.addEventListener("cancel", (e: Event) => {
       e.preventDefault();
     });
@@ -33,18 +42,32 @@ const Dialog = ({ showDialog, setShowDialog }: Props) => {
 
   const onSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+    setIsLoading(true);
+    try {
+      const response = await fetch("/api/posts", {
+        method: "POST",
+        body: JSON.stringify({ label, link }),
+        headers: {
+          "Content-Type": "application/json",
+        },
+      });
+      const data = await response.json();
+      if (data.message) {
+        alert(data.message);
+      }
 
-    const response = await fetch("/api/addPost", {
-      method: "POST",
-      body: JSON.stringify({ label, link }),
-      headers: {
-        "Content-Type": "application/json",
-      },
-    });
-    const data = await response.json();
-    setLabel("");
-    setLink("");
-    setShowDialog(false);
+      setLabel("");
+      setLink("");
+      setShowDialog(false);
+    } catch (error) {
+      if (error instanceof Error) {
+        alert(error.message);
+        return;
+      }
+      alert(`Unexpected Error: ${error}`);
+    } finally {
+      setIsLoading(false);
+    }
   };
 
   return (
@@ -88,11 +111,27 @@ const Dialog = ({ showDialog, setShowDialog }: Props) => {
           />
         </div>
         <div className="flex justify-end gap-5">
-          <button onClick={() => setShowDialog(false)} className="text-accent">
-            Cancel
-          </button>
-          <button className="bg-btnPrimary text-white py-4 px-5 rounded-xl font-bold">
-            Submit
+          {!isLoading && (
+            <button
+              onClick={() => setShowDialog(false)}
+              className="text-accent"
+            >
+              Cancel
+            </button>
+          )}
+
+          <button className=" flex items-center gap-2 bg-btnPrimary text-white py-4 px-5 rounded-xl font-bold">
+            {isLoading ? (
+              <>
+                <div
+                  className="border-r-indigo-500 animate-spin inline-block w-5 h-5 border-4  rounded-full"
+                  role="status"
+                ></div>
+                Processing...
+              </>
+            ) : (
+              "Submit"
+            )}
           </button>
         </div>
       </form>
