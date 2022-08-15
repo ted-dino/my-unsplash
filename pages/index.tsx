@@ -80,7 +80,7 @@ const Home: NextPage<Props> = ({ posts }) => {
         <link rel="icon" href="/devchallenges.png" />
       </Head>
 
-      <div className="container mx-auto px-2 xs:px-0">
+      <div className="container mx-auto px-2 xs:px-0 flex flex-col min-h-[95vh]">
         <header className="flex justify-between py-8 flex-wrap gap-5">
           <div className="flex items-center w-full md:w-auto">
             <img
@@ -119,7 +119,7 @@ const Home: NextPage<Props> = ({ posts }) => {
             Add a photo
           </button>
         </header>
-        <main className="columns-1 sm:columns-2 lg:columns-3 gap-2">
+        <main className="flex-1 columns-1 sm:columns-2 lg:columns-3 gap-2">
           {photos &&
             photos.length > 0 &&
             photos.map((post: Posts) => (
