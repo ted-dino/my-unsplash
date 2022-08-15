@@ -176,7 +176,9 @@ const Home: NextPage<Props> = ({ posts }) => {
 };
 
 export async function getServerSideProps() {
-  const result = await fetch("http://localhost:3000/api/posts");
+  const result = await fetch(
+    "https://my-unsplash-ted-dino.vercel.app//api/posts"
+  );
   const data = await result.json();
   return {
     props: {
