@@ -1,4 +1,4 @@
-<h1 align="center">{Your project name}</h1>
+<h1 align="center">My Unsplash</h1>
 
 <div align="center">
    Solution for a challenge from  <a href="http://devchallenges.io" target="_blank">Devchallenges.io</a>.
@@ -6,11 +6,11 @@
 
 <div align="center">
   <h3>
-    <a href="https://{your-demo-link.your-domain}">
+    <a href="https://my-unsplash-alpha.vercel.app/">
       Demo
     </a>
     <span> | </span>
-    <a href="https://{your-url-to-the-solution}">
+    <a href="https://devchallenges.io/solutions/WKesTOhjhVrOgcuKPHjj">
       Solution
     </a>
     <span> | </span>
@@ -27,25 +27,17 @@
   - [Built With](#built-with)
 - [Features](#features)
 - [How to use](#how-to-use)
-- [Contact](#contact)
 - [Acknowledgements](#acknowledgements)
 
 ## Overview
 
-![screenshot](https://user-images.githubusercontent.com/16707738/92399059-5716eb00-f132-11ea-8b14-bcacdc8ec97b.png)
-
-Introduce your projects by taking a screenshot or a gif. Try to tell visitors a story about your project by answering:
-
-- Where can I see your demo?
-- What was your experience?
-- What have you learned/improved?
-- Your wisdom? :)
+![image](https://user-images.githubusercontent.com/84649871/184595755-e6d29337-7258-4137-a025-36503bd6821a.png)
 
 ### Built With
 
-- [React](https://reactjs.org/)
-- [Vue.js](https://vuejs.org/)
-- [Tailwind](https://tailwindcss.com/)
+- Next.js
+- Typescript
+- Tailwind CSS
 
 ## Features
 
@@ -57,22 +49,23 @@ To clone and run this application, you'll need [Git](https://git-scm.com) and [N
 
 ```bash
 # Clone this repository
-$ git clone https://github.com/your-user-name/your-project-name
+$ git clone https://github.com/ted-dino/my-unsplash.git
+
+# Navigate to the new folder
+$ cd my-unsplash
 
 # Install dependencies
 $ npm install
 
 # Run the app
-$ npm start
+$ npm run dev
 ```
+<strong>NOTE</strong>: guide on how to get your API Keys [here](https://supabase.com/docs/guides/with-nextjs#get-the-api-keys), and rename the file named `.env.local.example` to `.env.local` and paste your API Keys there.
+
 
 ## Acknowledgements
 
 - [Modals Made Easy](https://youtu.be/TAB_v6yBXIE)
 - [Prevent dialog tag from closing on keydown Esc](https://stackoverflow.com/questions/61021135/prevent-dialog-from-closing-on-keydown-esc-in-chrome)
 
-## Contact
-
-- Website [your-website.com](https://{your-web-site-link})
-- GitHub [@your-username](https://{github.com/your-usermame})
-- Twitter [@your-twitter](https://{twitter.com/your-username})
+password: http://localhost:3000/
