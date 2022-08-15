@@ -29,11 +29,11 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
     }
     res.status(200).json(data);
   } else if (method === "DELETE") {
-    const { photoID } = req.body;
+    const { postId } = req.body;
     const { data, error } = await supabase
       .from("posts")
       .delete()
-      .eq("id", photoID);
+      .eq("id", postId);
 
     if (error) {
       res.status(500).send({ error });
