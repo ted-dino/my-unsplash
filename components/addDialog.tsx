@@ -1,44 +1,28 @@
 import { FormEvent, useEffect, useRef, useState } from "react";
-import { Posts } from "../types";
+import { useRouter } from "next/router";
+import { modal } from "../utils/modal";
 
 interface Props {
-  showDialog: boolean;
-  setShowDialog: (value: boolean) => void;
+  addDialog: boolean;
+  setAddDialog: (value: boolean) => void;
   isLoading: boolean;
   setIsLoading: (value: boolean) => void;
 }
 
 const Dialog = ({
-  showDialog,
-  setShowDialog,
+  addDialog,
+  setAddDialog,
   isLoading,
   setIsLoading,
 }: Props) => {
   const ref = useRef<HTMLDialogElement>(null);
   const [label, setLabel] = useState("");
   const [link, setLink] = useState("");
+  const router = useRouter();
 
   useEffect(() => {
-    const showModal = () => {
-      if (showDialog) {
-        ref.current?.showModal();
-      } else {
-        ref.current?.close();
-      }
-    };
-    showModal();
-
-    // prevent dialog tag from closing on keydown esc
-    ref.current?.addEventListener("cancel", (e: Event) => {
-      e.preventDefault();
-    });
-
-    return () => {
-      ref.current?.removeEventListener("cancel", (e: Event) => {
-        e.preventDefault();
-      });
-    };
-  }, [showDialog]);
+    modal(addDialog, ref);
+  }, [addDialog]);
 
   const onSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -58,7 +42,7 @@ const Dialog = ({
 
       setLabel("");
       setLink("");
-      setShowDialog(false);
+      setAddDialog(false);
     } catch (error) {
       if (error instanceof Error) {
         alert(error.message);
@@ -67,6 +51,7 @@ const Dialog = ({
       alert(`Unexpected Error: ${error}`);
     } finally {
       setIsLoading(false);
+      router.reload();
     }
   };
 
@@ -91,7 +76,7 @@ const Dialog = ({
             id="label"
             placeholder="Label"
             required
-            className="w-full text-sm p-2 sm:p-4 border-accent border rounded-xl focus-visible:outline-none"
+            className="w-full text-sm p-2 sm:p-4 border-secondary border rounded-xl focus-visible:outline-none"
           />
         </div>
         <div className="label flex flex-col">
@@ -107,15 +92,12 @@ const Dialog = ({
             pattern="https?:\/\/(www\.)?[-a-zA-Z0-9@:%._\+~#=]{1,256}\.[a-zA-Z0-9()]{1,6}\b([-a-zA-Z0-9()!@:%_\+.~#?&\/\/=]*)"
             required
             placeholder="https://images.unsplash.com/photo-1584395630827-860eee694d7b?ixlib=r..."
-            className="w-full text-sm p-2 sm:p-4 border-accent border rounded-xl focus-visible:outline-none"
+            className="w-full text-sm p-2 sm:p-4 border-secondary border rounded-xl focus-visible:outline-none"
           />
         </div>
         <div className="flex justify-end gap-5">
           {!isLoading && (
-            <button
-              onClick={() => setShowDialog(false)}
-              className="text-accent"
-            >
+            <button onClick={() => setAddDialog(false)} className="text-accent">
               Cancel
             </button>
           )}
