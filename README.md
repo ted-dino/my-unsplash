@@ -1,7 +1,3 @@
-# Work in progress
-
-<!--
-
 <h1 align="center">{Your project name}</h1>
 
 <div align="center">
@@ -79,4 +75,4 @@ $ npm start
 
 - Website [your-website.com](https://{your-web-site-link})
 - GitHub [@your-username](https://{github.com/your-usermame})
-- Twitter [@your-twitter](https://{twitter.com/your-username}) -->
+- Twitter [@your-twitter](https://{twitter.com/your-username})
